@@ -1,32 +1,64 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.text {
+    width:50%;
+    border:2px solid rgb(170, 170, 170);
+    border-radius:10px;
+    margin:0 auto;
+    outline:none;
+    padding:20px;
+    box-sizing:border-box;
+    transition:.9s;
+    text-align: center;
+    font-size: 24px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .submitButton {
+    border:2px solid rgb(170, 170, 170);
+    /* background-color: rgb(200, 200, 200);; */
+    /* background: url(https://image.freepik.com/free-icon/magnifying-glass-with-check-mark_318-64966.jpg); */
+    /* background-position: center; */
+    background-size: 100%;
+    padding-top: 2px;
+    /* color: rgb(90, 90, 90); */
+    border-radius:10px;
+    margin:0 auto;
+    padding:6px;
+    box-sizing:border-box;
+    /* transition:.3s; */
+    text-align: center;
+    font-size: 38px; 
+    /* size: 30px; */
   }
-}
+
+  .spacerP {
+    padding: 4px;
+  }
+
+  .wordwide {
+    border:2px solid rgb(170, 170, 170);
+    width: 80%;
+    padding-bottom: 0px;
+    border-radius:20px;
+
+  }
+
+  .mainDiv {
+    margin: 0 auto;
+    padding: 140px;
+    /* display: block; */
+    text-align: center;
+    width:800px;
+    height:2000px;
+    background:rgb(240, 240, 240); 
+    border-radius: 10px 10px 10px 10px;
+    overflow:hidden;
+    border:2px solid rgb(210, 210, 210);
+
+  }
+
+  .ptag {
+    font-size: 60px;
+  }
+
+  .phonetic {
+    font-size: 36px;
+  }
