@@ -4,6 +4,8 @@ import wordwide from '../wordwide.png'
 import axios from 'axios'
 // import * as d3 from "d3";
 import plotly from 'plotly'
+import BubbleChart from '@weknow/react-bubble-chart-d3';
+
 
 
 class App extends Component {
@@ -32,13 +34,14 @@ class App extends Component {
     const ipaReq = await axios.get('http://localhost:2000/api/getIpa/' + targetWord);
     this.setState({returnedWords: res.data,
                     phonetic: ipaReq.data,
-                  inputWord: targetWord}) 
+                  inputWord: targetWord});
+    console.log(this.state.returnedWords)
   };
 
 
   ngramClusters() {
   let clusters = [];
-  clusters.push(<p class="ptag">{this.state.inputWord}</p>) 
+  clusters.push(<p class="wordtag">{this.state.inputWord}</p>) 
   clusters.push(<p class="ptag">{this.state.phonetic}</p>)
   for (let key in this.state.returnedWords) {
       clusters.push( 
@@ -51,6 +54,12 @@ class App extends Component {
     console.log(clusters + "clusters logged")
 
   }
+  bubbleClick = (label) =>{
+    console.log("Custom bubble click func")
+  }
+  legendClick = (label) =>{
+    console.log("Customer legend click func")
+  }
 
 
   render() {
@@ -62,11 +71,53 @@ class App extends Component {
         <div>
           <p class = "spacerP"></p>
         </div>
-        <input onChange={event => this.setState({inputWord: event.target.value})} class="text" placeholder="Enter a word"></input>
-        <button onClick={event => this.handleSearchClick(event)} class="submitButton">🔍</button>
-        <div className="sound-list-container">
-          {this.ngramClusters()}
-      </div>
+          <input onChange={event => this.setState({inputWord: event.target.value})} class="text" placeholder="Enter a word"></input>
+          <button onClick={event => this.handleSearchClick(event)} class="submitButton">🔍</button>
+          <div className="sound-list-container">
+            {this.ngramClusters()}
+          </div>
+          <BubbleChart
+            graph = {{
+              zoom: 1.0,
+              offsetX: -0.01,
+              offsetY: -0.01,
+            }}
+            width={800}
+            height={800}
+            showLegend={false} 
+            legendPercentage={20} 
+            // legendFont={{
+            //       family: 'Arial',
+            //       size: 12,
+            //       color: '#000',
+            //       weight: 'bold',
+            //     }}
+            valueFont={{
+                  family: 'Arial',
+                  size: 12,
+                  color: '#fff',
+                  weight: 'bold',
+                }}
+            labelFont={{
+                  family: 'Arial',
+                  size: 16,
+                  color: '#fff',
+                  weight: 'bold',
+                }}
+            //Custom bubble/legend click functions such as searching using the label, redirecting to other page
+            bubbleClickFunc={this.bubbleClick}
+            legendClickFun={this.legendClick}
+            data={[
+              { label: 'CRM', value: 1, color: '#000000' },
+              { label: 'API', value: 1 , color: '#ff00ff'},
+              { label: 'Data', value: 1, color: '#00000f' },
+              { label: 'Commerce', value: 1, color: '#f000ff' },
+              { label: 'AI', value: 3, color: '#ff0000' },
+              { label: 'Management', value: 5, color: '#ff00ff' },
+              { label: 'Testing', value: 6, color: '#ff00ff' },
+              { label: 'Mobile', value: 9, color: '#ff00ff' },
+            ]}
+          />
       </div>
     );
   }

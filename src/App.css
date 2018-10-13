@@ -8,7 +8,7 @@
     box-sizing:border-box;
     transition:.9s;
     text-align: center;
-    font-size: 24px;
+    font-size: 30px;
   }
 
   .submitButton {
@@ -31,7 +31,7 @@
     border:2px solid rgb(170, 170, 170);
     width: 80%;
     padding-bottom: 0px;
-    border-radius:20px;
+    border-radius:10px;
 
   }
 
@@ -40,7 +40,7 @@
     padding: 140px;
     /* display: block; */
     text-align: center;
-    width:800px;
+    width: 60%;
     height:2000px;
     background:rgb(240, 240, 240); 
     border-radius: 10px 10px 10px 10px;
@@ -50,6 +50,10 @@
   }
 
   .ptag {
+    font-size: 60px;
+  }
+
+  .wordtag {
     font-size: 60px;
   }
 
