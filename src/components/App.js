@@ -31,19 +31,14 @@ class App extends Component {
     const res = await axios.get('http://localhost:2000/api/getWord/' + targetWord);
     const ipaReq = await axios.get('http://localhost:2000/api/getIpa/' + targetWord);
     this.setState({returnedWords: res.data,
-                    phonetic: ipaReq.data})  
+                    phonetic: ipaReq.data,
+                  inputWord: targetWord}) 
   };
 
-newSearch(event) {
-  // this.onChange(this.state.newSearchWord) {
-    // this.setState(this.state.inputWord == this.state.newSearchWord)
-  // this.fetchWords(this.state.newSearchWord)
-  // }
-  
-}
 
   ngramClusters() {
   let clusters = [];
+  clusters.push(<p class="ptag">{this.state.inputWord}</p>) 
   clusters.push(<p class="ptag">{this.state.phonetic}</p>)
   for (let key in this.state.returnedWords) {
       clusters.push( 
@@ -52,13 +47,11 @@ newSearch(event) {
       </p>
       )
     }
-    // 
     return clusters
+    console.log(clusters + "clusters logged")
+
   }
-  //this.setState({newSearchWord: 
-  //this.setState({newSearchWord: event.target.value})
-  //{this.state.returnedWords[key].join(', ')}
-  // event => this.setState({newSearchWord: event.target.value
+
 
   render() {
     return (
