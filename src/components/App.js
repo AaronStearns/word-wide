@@ -13,13 +13,18 @@ class App extends Component {
     this.state = {
       inputWord: "",
       returnedWords: {},
-      phonetic: ""
+      phonetic: "",
+      newSearchWord: null 
     }
   }
 
   handleSearchClick(event) {
+    if (this.state.newSearchWord == null) {
     this.fetchWords(this.state.inputWord)
     console.log(this.state)
+    } else {
+      this.fetchWords(this.state.newSearchWord)
+    }
   }
 
   async fetchWords(targetWord) {
@@ -27,31 +32,34 @@ class App extends Component {
     const ipaReq = await axios.get('http://localhost:2000/api/getIpa/' + targetWord);
     this.setState({returnedWords: res.data,
                     phonetic: ipaReq.data})  
-      
   };
 
-
-
+newSearch(event) {
+  // this.onChange(this.state.newSearchWord) {
+    // this.setState(this.state.inputWord == this.state.newSearchWord)
+  // this.fetchWords(this.state.newSearchWord)
+  // }
+  
+}
 
   ngramClusters() {
   let clusters = [];
   clusters.push(<p class="ptag">{this.state.phonetic}</p>)
   for (let key in this.state.returnedWords) {
       clusters.push( 
-        // attach 
-      <p onClick={() => console.log(key + ' was pressed')} class="phonetic">
-        {key}  {this.state.returnedWords[key][0]}
+      <p onClick={event => this.fetchWords(this.state.returnedWords[key][0])} class="phonetic">
+        {key}  {this.state.returnedWords[key].slice(0, 1)}
       </p>
       )
     }
-
+    // 
     return clusters
   }
+  //this.setState({newSearchWord: 
+  //this.setState({newSearchWord: event.target.value})
   //{this.state.returnedWords[key].join(', ')}
+  // event => this.setState({newSearchWord: event.target.value
 
-
-
- 
   render() {
     return (
       <div class="mainDiv">
@@ -72,4 +80,3 @@ class App extends Component {
 }
 
 export default App;
-
