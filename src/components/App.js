@@ -5,7 +5,7 @@ import axios from 'axios'
 // import * as d3 from "d3";
 import plotly from 'plotly'
 import BubbleChart from '@weknow/react-bubble-chart-d3';
-
+import underscore from 'underscore';
 
 
 class App extends Component {

@@ -8,7 +8,8 @@
     "plotly": "^1.0.6",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
+    "react-scripts": "2.0.4",
+    "underscore": "^1.9.1"
   },
   "scripts": {
     "start": "react-scripts start",
