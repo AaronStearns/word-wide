@@ -61,6 +61,36 @@ class App extends Component {
     console.log("Customer legend click func")
   }
 
+  generateChart = (obj) => {
+
+    // function below populates these arrays
+    let phoneticLength = []
+    let names = []
+    const colors = ["#BBBBFF", "#BBDAFF", "#BBEBFF", "8CEFFD", "#A5FEFA"]
+  
+    // sample from colors and assign to the object
+  
+    let arrayPopulater = function (anObject) {
+      for (var key in anObject) { 
+        phoneticLength.push( Object.keys( anObject[key] ).length )
+        names.push( key )
+      }
+    }
+  
+    arrayPopulater(obj)
+  
+    var words = [];
+  
+    for (var i = 0; i < names.length; i++)  
+      words.push({
+        label:names[i], 
+        value:phoneticLength[i],
+        color: colors[i % colors.length]
+        }
+      );
+  
+    return words;
+  }
 
   render() {
     return (
@@ -79,11 +109,11 @@ class App extends Component {
           <BubbleChart
             graph = {{
               zoom: 1.0,
-              offsetX: -0.01,
-              offsetY: -0.01,
+              offsetX: -0.00,
+              offsetY: -0.00,
             }}
-            width={800}
-            height={800}
+            width={1000}
+            height={1000}
             showLegend={false} 
             legendPercentage={20} 
             // legendFont={{
@@ -94,29 +124,20 @@ class App extends Component {
             //     }}
             valueFont={{
                   family: 'Arial',
-                  size: 12,
-                  color: '#fff',
+                  size: 24,
+                  color: '#000000',
                   weight: 'bold',
                 }}
             labelFont={{
                   family: 'Arial',
-                  size: 16,
-                  color: '#fff',
+                  size: 24,
+                  color: '#000000',
                   weight: 'bold',
                 }}
             //Custom bubble/legend click functions such as searching using the label, redirecting to other page
             bubbleClickFunc={this.bubbleClick}
             legendClickFun={this.legendClick}
-            data={[
-              { label: 'CRM', value: 1, color: '#000000' },
-              { label: 'API', value: 1 , color: '#ff00ff'},
-              { label: 'Data', value: 1, color: '#00000f' },
-              { label: 'Commerce', value: 1, color: '#f000ff' },
-              { label: 'AI', value: 3, color: '#ff0000' },
-              { label: 'Management', value: 5, color: '#ff00ff' },
-              { label: 'Testing', value: 6, color: '#ff00ff' },
-              { label: 'Mobile', value: 9, color: '#ff00ff' },
-            ]}
+            data={this.generateChart(this.state.returnedWords)}
           />
       </div>
     );
